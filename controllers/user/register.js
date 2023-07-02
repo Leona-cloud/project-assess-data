@@ -1,7 +1,7 @@
 const User = require('../../models/User');
 const {registerSchema} = require('../../schema/user-schema');
 const bcrypt = require('bcrypt');
-const _ = require('lodash')
+const _ = require('lodash');
 
 const registerUser = async(req, res)=>{
 
@@ -11,8 +11,8 @@ const registerUser = async(req, res)=>{
     };
 
 
-    let user = await User.findOne({email: req});
-    if(user) return res.status(400).json({success: false, message: `user with ${req.body.email}`});
+    let user = await User.findOne({email: req.body.email});
+    if(user) return res.status(400).json({success: false, message: `user with ${req.body.email} already exist`});
 
 
     user = new User(_.pick(req.body, ['email', 'firstName', 'otherNames', 'password', 'address']));
@@ -21,7 +21,6 @@ const registerUser = async(req, res)=>{
         
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
-        user.confirmPassword = await bcrypt.hash(user.confirmPassword, salt);
 
         const result = await user.save();
         console.log(result, 'user registration');
@@ -33,7 +32,10 @@ const registerUser = async(req, res)=>{
 
     } catch (error) {
         console.log(error.message);
-        return errorResponse(500, res, 'Student registration failed')
+        return res.status(500).json({
+            success: false,
+            message: 'Something went wrong - user registration'
+        })
     }
 
 };
