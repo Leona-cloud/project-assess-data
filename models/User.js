@@ -29,7 +29,13 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true
-    }
+    },
+    verificationToken: {
+        type: String
+      },
+      verificationTokenTTL: {
+        type: String,
+      },
 
 });
 userSchema.methods.generateToken = function(){
