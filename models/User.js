@@ -30,6 +30,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    accountVerified:{
+        type: Boolean,
+        default: false
+    },
     verificationToken: {
         type: String
       },
