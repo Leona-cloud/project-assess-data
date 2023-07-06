@@ -34,7 +34,6 @@ const registerUser = async(req, res)=>{
         if (!emailSent) {
           console.log(`verification email failed ${user.email}`);
         };
-
         await user.updateOne({id: user.id}).set({
             verificationToken: token,
             verificationTokenTTL: expiresAt
