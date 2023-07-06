@@ -17,7 +17,7 @@ const registerUser = async(req, res)=>{
     if(user) return res.status(400).json({success: false, message: `user with ${req.body.email} already exist`});
 
 
-    user = new User(_.pick(req.body, ['email', 'firstName', 'otherNames', 'password', 'address']));
+    user = new User(_.pick(req.body, ['email', 'firstName', 'otherNames', 'password', 'address', 'phoneNumber']));
 
     try {
         

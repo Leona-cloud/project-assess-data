@@ -7,6 +7,7 @@ function registerSchema(user) {
     firstName: Joi.string().required(),
     otherNames: Joi.string().required(),
     address: Joi.string().required(),
+    phoneNumber: Joi.string().length(11).pattern(/^[0-9]+$/).required(),
     password: new PasswordComplexity({
       min: 8,
       max: 25,

@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
         symbol: 1,
         requirementCount: 4
     }),
+    phoneNumber:{
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         required: true
