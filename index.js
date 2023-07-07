@@ -1,12 +1,18 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv').config();
+const cors = require("cors");
 
 const authentication = require('./routes/authentication')
 
 
 
 const app = express();
+
+app.use(cors({
+  origin: '*'
+}));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
