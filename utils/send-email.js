@@ -1,7 +1,7 @@
 const sgMail = require("@sendgrid/mail");
 
 const sendEmail = async function (token, email) {
-  sgMail.setApiKey(process.env.Final);
+  sgMail.setApiKey(process.env.Myver_Key);
   const msg = {
     to: email,
     from: process.env.senderEmail, 
