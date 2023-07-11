@@ -6,21 +6,15 @@ const bcrypt = require('bcrypt')
 
 const updatePassword = async(req, res)=>{
 
-    const {email, token, password, confirmPassword} = req.body;
+    const {email, password, confirmPassword} = req.body;
 
-    const userExists = await User.findOne({email: email, verificationToken: token});
+    const userExists = await User.findOne({email: email});
     if(!userExists) return res.status(400).json({
         success: false,
         message: 'Token invalid'
     });
 
-    //check if passwords match
-    if(userExists.verificationTokenTTL <= Date.now()){
-        return res.status(400).json({
-            success: false,
-            message: `OTP provided expired for, ${userExists.email}`
-          })
-    };
+   
     
     try {
 
@@ -29,10 +23,9 @@ const updatePassword = async(req, res)=>{
             const hash = await bcrypt.hash(password, salt);
 
             await userExists.updateOne({id: userExists.id}).set({
-                verificationToken: '',
-                verificationTokenTTL: '',
-                password: hash
-            })
+               password: hash
+            });
+           
 
         }else{
             return res.status(400).json({
