@@ -11,11 +11,10 @@ const updatePassword = async(req, res)=>{
     const userExists = await User.findOne({email: email});
     if(!userExists) return res.status(400).json({
         success: false,
-        message: 'Token invalid'
+        message: 'User does not exist'
     });
 
-   
-    
+
     try {
 
         if(_.isEqual(password, confirmPassword)){
