@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 const cors = require("cors");
 
 const authentication = require('./routes/authentication')
-
+const transaction = require('./routes/transactions')
 
 
 const app = express();
@@ -17,7 +17,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/auth", authentication)
+app.use("/api/auth", authentication);
+app.use("/api/transaction", transaction)
 
 
 mongoose
