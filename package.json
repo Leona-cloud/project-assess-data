@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Leona-cloud/project-assess-data#readme",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

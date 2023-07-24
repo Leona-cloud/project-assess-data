@@ -7,7 +7,8 @@ const userLogin = require('../controllers/user/login');
 const verifyMail = require('../controllers/user/verify-email');
 const resetPassword = require('../controllers/user/reset-password');
 const updatePassword = require('../controllers/user/update-password');
-const resetToken = require('../controllers/user/confirmResetToken')
+const resetToken = require('../controllers/user/confirmResetToken');
+const makePayment = require('../controllers/user/make-payment');
 
 
 
@@ -18,6 +19,7 @@ router.post('/verify-email', verifyMail);
 router.post('/reset-password', resetPassword);
 router.post('/update-password', updatePassword);
 router.post('/confirm-token', resetToken);
+router.post('/make-payment', auth, makePayment);
 
 
 
