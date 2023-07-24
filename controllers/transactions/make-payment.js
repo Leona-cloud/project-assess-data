@@ -10,8 +10,11 @@ const makePayment = async (req, res)=>{
 
     const user = await User.findOne({email: authenticatedUser.email});
     if(!user){
-        return errorResponse(400, res, 'User not registerd')
-    };
+        return res.status(400).json({
+            success: false,
+            message: 'User not registerd'
+        }); 
+    }
 
     const email = req.user.email;
 
@@ -31,7 +34,10 @@ const makePayment = async (req, res)=>{
     try {
         
         const makeFullPayment = await initializeTransaction(email, newAmount, transactionRefernce);
-        if(!makeFullPayment) return errorResponse(400, res, 'Transaction unsuccessful, something went wrong');
+        if(!makeFullPayment) return res.status(400).json({
+            success: false,
+            message: 'Transaction unsuccessful, something went wrong'
+        });
 
         await Transaction.create({
             userId: req.user.id,
