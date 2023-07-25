@@ -11,7 +11,7 @@ const fetchTransaction = require('../controllers/transactions/transaction-histor
 
 router.post('/make-payment', auth, makePayment);
 router.post('/paystack-webhook', paystackWebhook);
-router.post('/transaction-history', fetchTransaction)
+router.post('/transaction-history', auth, fetchTransaction)
 
 
 
