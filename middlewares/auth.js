@@ -7,7 +7,7 @@ async function auth(req, res, next){
     if(!token) return res.status(401).send('Access denied');
 
         try {
-            const decoded = jwt.verify(token, process.env.jwtPrivateKey, { expiresIn: '1h'});
+            const decoded = jwt.verify(token, process.env.jwtPrivateKey, { expiresIn: '7d'});
             const user = await User.findOne({_id: decoded._id});
             if(user){
                 req.user = user;
