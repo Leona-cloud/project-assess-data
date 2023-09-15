@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const initializeTransaction = async function(email, amount, reference){
-    const Token = process.env.paystackSecretKey;
+    const Token = "sk_test_7538b2d80a4f4f8ed1ffe5795971c0ebed08b76c";
 
     try {
 
